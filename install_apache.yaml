@@ -35,3 +35,9 @@
        name: php
        state: latest
      when: ansible_distribution == "CentOS"
+
+   - name: start service httpd
+     ansible.builtin.service:
+       name: httpd
+       state: started
+     when: ansible_distribution == "CentOS"
