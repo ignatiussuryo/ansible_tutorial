@@ -2,30 +2,22 @@
  - hosts: all
    become: true
    tasks:
-   - name: update repository ubuntu 
-     apt:
-       update_cache: yes
-     when: ansible_distribution == "Ubuntu"
-
    - name: install apache2 and php package
      apt:
        name: 
          - apache2
          - libapache2-mod-php
        state: latest
+       update_cache: yes
      when: ansible_distribution == "Ubuntu"
 
-   - name: update repository centos
-     dnf:
-       update_cache: yes
-     when: ansible_distribution == "CentOS"
-
-   - name: install httpd package
+   - name: install httpd and php package
      dnf:
        name: 
          - httpd
          - php
        state: latest
+       update_cache: yes
      when: ansible_distribution == "CentOS"
 
    - name: start service httpd
